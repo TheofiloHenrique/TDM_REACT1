@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { juegos } from "./data/juegos.js";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
@@ -21,14 +21,25 @@ function App() {
     setFavoritos(favoritos.filter((favId) => favId !== id));
   };
 
-  const juegosFiltrados =
-    filtro === "Todos" ? juegos : juegos.filter((juego) => juego.categoria === filtro);
+  const juegosFiltrados = filtro === "Todos" ? juegos : juegos.filter((juego) => juego.categoria === filtro);
 
   const juegosFavoritos = juegos.filter((juego) => favoritos.includes(juego.id));
 
+  //Tema
+  const [tema, setTema] = useState(() => localStorage.getItem("tema") || "oscuro");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-tema", tema);
+    localStorage.setItem("tema", tema);
+  }, [tema]);
+
+  const cambiarTema = () => {
+    setTema(tema === "oscuro" ? "claro" : "oscuro");
+  };
+
   return (
     <>
-      <Header totalFavoritos={favoritos.length} />
+      <Header totalFavoritos={favoritos.length} tema={tema} cambiarTema={cambiarTema} />
       <Hero />
       <Catalogo
         juegos={juegosFiltrados}

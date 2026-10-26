@@ -1,4 +1,31 @@
+/* Estilos globales básicos */
 @import url("https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;700&display=swap");
+
+/* Tema oscuro (por defecto) */
+:root {
+  --fondo: #1d1640;
+  --fondo-card: #2b2260;
+  --texto: #f4f1ff;
+  --rosa: #ff5d8f;
+  --rosa-hover: #ff2f6e;
+  --cian: #3dd9eb;
+  --on-rosa: #ffffff;
+  --hero-1: #3b2a8c;
+  --hero-2: #1d1640;
+}
+
+/* Tema claro: solo cambian los valores de las variables */
+[data-tema="claro"] {
+  --fondo: #f4f1ff;
+  --fondo-card: #ffffff;
+  --texto: #1d1640;
+  --rosa: #e8336f;
+  --rosa-hover: #c71f58;
+  --cian: #0a7a8c;
+  --on-rosa: #ffffff;
+  --hero-1: #dcd3ff;
+  --hero-2: #f4f1ff;
+}
 
 * {
   box-sizing: border-box;
@@ -12,7 +39,7 @@ html {
 
 body {
   font-family: "Nunito", sans-serif;
-  background-color: #1d1640;
-  color: #f4f1ff;
+  background-color: var(--fondo);
+  color: var(--texto);
   line-height: 1.5;
 }
